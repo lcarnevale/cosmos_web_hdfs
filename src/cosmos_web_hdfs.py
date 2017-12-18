@@ -12,10 +12,6 @@ class CosmosWebHDFS():
 
 
 	def set_token(self, username, password):
-		# curl -vL -k -X POST "https://computing.dit.upm.es:13000/cosmos-auth/v1/token" 
-		# -H "Content-Type: application/x-www-form-urlencoded" 
-		# -d "grant_type=password&username=fran.aragona@gmail.com&password=filippo11"
-
 		url = "%s:%s/cosmos-auth/%s/token" % (self.__url_compute, self.__port_compute, self.__version)
 
 		headers = {
@@ -43,9 +39,6 @@ class CosmosWebHDFS():
 
 
 	def mkdir(self, path):
-		# curl -vL -X PUT "http://storage.dit.upm.es:14000/webhdfs/v1/user/faragona/fliware/cluster?op=MKDIRS&user.name=faragona" 
-		# -H "X-Auth-token: ynNESQEfNUH3dBQkFC1DqSSabxm7yp" | python -m json.tool
-
 		url = "%s:%s/webhdfs/%s/user/%s/%s?op=MKDIRS" % (self.__url_storage, self.__port_storage, self.__version,self.__username, path)
 		
 		headers = {
@@ -85,11 +78,6 @@ class CosmosWebHDFS():
 		return r.json()
 
 	def create_file(self, path, payload):
-		# curl -L -X PUT "http://storage.dit.upm.es:14000/webhdfs/v1/user/faragona/newdir/testdata.txt?op=CREATE&user.name=faragona" 
-		# -H "Content-Type: application/octet-stream" 
-		# -H "X-Auth-token: ta38Ys2WOgRJtxUtpplIWGy9VRR5Aa" 
-		# -d@./tile.txt
-		
 		url = "%s:%s/webhdfs/%s/user/%s/%s?op=CREATE" % (self.__url_storage, self.__port_storage, self.__version, self.__username, path)
 
 		headers = {
